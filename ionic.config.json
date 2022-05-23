@@ -1,0 +1,7 @@
+{
+  "name": "MauricioApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
