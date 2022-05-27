@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'cuenta/:id',
     loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+  },
+  {
+    path: 'cuenta/pagos/:id',
+    loadChildren: () => import('./pages/pagos/pagos.module').then( m => m.PagosPageModule)
   }
 ];
 @NgModule({

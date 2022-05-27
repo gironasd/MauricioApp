@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>pagos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]=""  novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombres</ion-label>
+      <ion-input  type="text"  readonly="readonly"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input  type="text"  readonly="readonly"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input  type="email"  readonly="readonly"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Ciudad</ion-label>
+      <ion-input  type="text"  readonly="readonly"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block"  >Registrar Pago</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

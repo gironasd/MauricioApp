@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cuenta</ion-title>
+    <ion-title>Datos de la cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <form [formGroup]="cuentaForm"  novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombres</ion-label>
+      <ion-input formControlName="nombres" type="text"  readonly="readonly"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input formControlName="apellidos" type="text"  readonly="readonly"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email"  readonly="readonly"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Ciudad</ion-label>
+      <ion-input formControlName="ciudad" type="text"  readonly="readonly"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" routerLink="/cuenta/pagos/{{cid}}" >Registrar Pago</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="col">1 of 2</div>
+      </ion-col>
+      <ion-col>
+        <div>2 of 2</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

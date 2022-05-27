@@ -4,19 +4,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CuentaPageRoutingModule } from './cuenta-routing.module';
+import { PagosPageRoutingModule } from './pagos-routing.module';
 
-import { CuentaPage } from './cuenta.page';
+import { PagosPage } from './pagos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CuentaPageRoutingModule,
+    PagosPageRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [CuentaPage]
+  declarations: [PagosPage]
 })
-export class CuentaPageModule {}
+export class PagosPageModule {}
