@@ -5,27 +5,18 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]=""  novalidate>
+  <form [formGroup]="pagoForm"  (ngSubmit)="crearPago()" novalidate>
     <ion-item lines="full">
-      <ion-label position="floating">Nombres</ion-label>
-      <ion-input  type="text"  readonly="readonly"></ion-input>
+      <ion-label position="floating"  >Monto Bs</ion-label>
+      <ion-input  type="number" formControlName="montoBs"></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Apellidos</ion-label>
-      <ion-input  type="text"  readonly="readonly"></ion-input>
-    </ion-item>
-    
-    <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input  type="email"  readonly="readonly"></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Ciudad</ion-label>
-      <ion-input  type="text"  readonly="readonly"></ion-input>
+      <ion-label position="floating"  >Monto $us</ion-label>
+      <ion-input  type="number" formControlName="montoSus"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block"  >Registrar Pago</ion-button>
+        <ion-button type="submit" color="danger" expand="block" >Registrar Pago</ion-button>
       </ion-col>
     </ion-row>
   </form>
