@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cuentas } from 'src/app/models/cuentas.model';
+import { Pagos } from 'src/app/models/pago.model';
 import { CuentaService } from 'src/app/services/cuenta.service';
 
 
@@ -16,6 +17,7 @@ export class CuentaPage implements OnInit {
   public cuenta: Cuentas[] = []
   public cuentaSeleccionada!: Cuentas;
   public cid: string
+  public pago: Pagos[] = []
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +30,7 @@ export class CuentaPage implements OnInit {
     
     this.activatedRoute.params.subscribe( ({id}) => {
       this.cargarCuenta(id)
+      this.cargarPagos(id)
     })
 
 
@@ -53,5 +56,14 @@ export class CuentaPage implements OnInit {
         this.cuentaForm.setValue({ nombres, apellidos, email, ciudad})
        
       })
+  }
+
+  cargarPagos( id: string ) {
+
+    this.cuentaService.obtenerPagosporCuenta( id )
+        .subscribe ( (pagocuentas: any) => {
+          console.log(pagocuentas)
+          this.pago = pagocuentas
+        })
   }
 }

@@ -29,15 +29,21 @@
       </ion-col>
     </ion-row>
   </form>
-
+  <ion-toolbar>
+    <ion-title>Historial de pagos</ion-title>
+  </ion-toolbar>
   <ion-grid>
-    <ion-row>
+
+    <ion-row *ngFor="let pagos of pago">
       <ion-col>
-        <div class="col">1 of 2</div>
+        <div>Fecha: {{pagos.fecha | date: 'dd/MM/YYYY'}}</div>
+        <div><p>Hora: {{pagos.fecha | date: 'HH:mm'}}</p></div>
       </ion-col>
       <ion-col>
-        <div>2 of 2</div>
+        <div align="right">Bs{{ pagos.montoBs }}</div>
+        <div align="right"><p>$us{{ pagos.montoSus }}</p></div>
       </ion-col>
+      
     </ion-row>
   </ion-grid>
 </ion-content>

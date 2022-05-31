@@ -1,6 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+//import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -18,9 +20,14 @@ import { TabsPageModule } from './pages/tabs/tabs.module';
     AppRoutingModule,
     LoginPageModule,
     TabsPageModule,
+    HttpClientModule
     
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: 
+  [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+   //FileOpener
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

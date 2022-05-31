@@ -1,22 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pagos</ion-title>
+    <ion-title>Registro de Pagos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="pagoForm"  (ngSubmit)="crearPago()" novalidate>
     <ion-item lines="full">
-      <ion-label position="floating"  >Monto Bs</ion-label>
-      <ion-input  type="number" formControlName="montoBs"></ion-input>
+      <ion-label position="floating" >Monto Bs</ion-label>
+      <ion-input  type="number" formControlName="montoBs" id="bs" name="bs" o="cambioSus()"></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating"  >Monto $us</ion-label>
-      <ion-input  type="number" formControlName="montoSus"></ion-input>
+      <ion-label position="floating" >Monto $us</ion-label>
+      <ion-input  type="number" formControlName="montoSus" id="sus" name="sus"></ion-input>
+     
     </ion-item>
+    <script>
+      function cambioSus() {
+        
+        let cambio = document.getElementById("bs").value;
+        console.log(cambio)
+        //Se actualiza en municipio inm
+        document.getElementById("sus").value = cambio;
+      }
+    </script>
     <ion-row>
       <ion-col>
         <ion-button type="submit" color="danger" expand="block" >Registrar Pago</ion-button>
+        <ion-button expand="block" (click)="createPDF()">PDF</ion-button>
       </ion-col>
     </ion-row>
   </form>

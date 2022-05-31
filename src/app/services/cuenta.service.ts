@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CargarCuentas } from '../interfaces/cargar-cuentas.interface';
 import { Cuentas } from '../models/cuentas.model';
 import { map } from 'rxjs/operators'
+import { Pagos } from '../models/pago.model';
 
 const base_url = environment.base_url
 
@@ -29,4 +30,15 @@ export class CuentaService {
                       map( (resp: { ok: boolean, cuentas: Cuentas}) => resp.cuentas)
                     );
   }
+
+  obtenerPagosporCuenta(id: string){
+    const url = `${ base_url }/pagos/${ id }`
+    return this.http.get( url )
+                    .pipe(
+                      map( (resp: { ok: boolean, pagocuentas: Pagos}) => resp.pagocuentas)
+                    );
+  }
+  
+
+  
 }
