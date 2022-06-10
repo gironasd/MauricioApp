@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { LoginPageModule } from './pages/auth/login/login.module';
 import { TabsPageModule } from './pages/tabs/tabs.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

@@ -19,6 +19,7 @@ export class LoginService {
   ) { }
 
   validarToken(): Observable<boolean> {
+    console.log('aqui')
     const token = localStorage.getItem('token') || '';
     return this.http.get(` ${ base_url }/login-movil/renew`, {
       headers: {
@@ -26,6 +27,9 @@ export class LoginService {
       }
     }).pipe(
         tap( (resp: any) => {
+          console.log('aqui')
+          console.log('usuario:', resp)
+          
           localStorage.setItem('token', resp.token )
         }),
         map( resp => true),

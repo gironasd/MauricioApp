@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators'
 import { Pagos } from '../models/pago.model';
+import { UsuarioMovil } from '../models/usuario-movil.model';
 
 const base_url = environment.base_url
 
@@ -11,6 +12,8 @@ const base_url = environment.base_url
   providedIn: 'root'
 })
 export class PagoService {
+
+  public usuario: UsuarioMovil;
 
   constructor(
     private http: HttpClient,
@@ -21,9 +24,9 @@ export class PagoService {
     return localStorage.getItem('token') || '';
   }
 
-// get uid(): string {
-//   return this.usuario.uid || ''
-// }
+  get uid(): string {
+    return this.usuario._id || ''
+  }
 
   get headers() {
     return {
@@ -45,5 +48,14 @@ export class PagoService {
   crearPago( pago: { montoBs: string, montoSus: string, cuenta:string, usuarioM:string } ) {
     const url = `${ base_url }/pagos`
     return this.http.post( url, pago, this.headers )
+  }
+
+  obtenerCobros(){
+    console.log('el id: ', this.headers)
+    const url = `${ base_url }/pagos/usuarios`
+    return this.http.get( url, this.headers )
+                    .pipe(
+                      map( (resp: { ok: boolean, cobros: Pagos[], cid: string}) => resp.cobros)
+                    );
   }
 }

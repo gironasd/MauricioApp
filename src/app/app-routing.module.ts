@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   // {
@@ -15,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
-    path: 'cuentas',
+    path: 'cuentas', canActivate: [AuthGuard],
     loadChildren: () => import('./pages/cuentas/cuentas.module').then( m => m.CuentasPageModule)
   },
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'cuenta/pagos/:id',
     loadChildren: () => import('./pages/pagos/pagos.module').then( m => m.PagosPageModule)
+  },
+  {
+    path: 'historial', canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/historial/historial.module').then( m => m.HistorialPageModule)
   }
 ];
 @NgModule({
