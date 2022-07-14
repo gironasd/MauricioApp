@@ -12,7 +12,8 @@ export class Pagos {
         public montoBs: number,
         public montoSus: number,
         public fecha: string,
-        public email: string, 
+        public cambio: number, 
+        public total: number,
         public _id?: string,
         public usuarioM?: _PagoUser,
         public cuenta?: Cuentas

@@ -45,7 +45,7 @@ export class PagoService {
            
   }
 
-  crearPago( pago: { montoBs: string, montoSus: string, cuenta:string, usuarioM:string } ) {
+  crearPago( pago: { montoBs: string, montoSus: string, cambio: string, total: number, cuenta:string, usuarioM:string } ) {
     const url = `${ base_url }/pagos`
     return this.http.post( url, pago, this.headers )
   }

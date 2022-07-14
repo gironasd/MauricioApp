@@ -40,8 +40,13 @@
         <div><p>Hora: {{pagos.fecha | date: 'HH:mm'}}</p></div>
       </ion-col>
       <ion-col>
-        <div align="right">Bs{{ pagos.montoBs }}</div>
-        <div align="right"><p>$us{{ pagos.montoSus }}</p></div>
+        <div align="right">Pago de</div>
+        <div align="right" *ngIf="pagos.cambio!=0">
+          <p >$us{{ pagos.montoSus + (pagos.montoBs/pagos.cambio) | number: '0.3-3'}} </p>
+        </div>
+        <div align="right" *ngIf="pagos.cambio==0">
+          <p >$us{{ pagos.montoSus | number: '0.3-3'}} </p>
+        </div>
       </ion-col>
       
     </ion-row>

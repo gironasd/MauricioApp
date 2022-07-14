@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 //import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { Platform } from '@ionic/angular';
+import { ActionSheetController, AlertController, ModalController, Platform } from '@ionic/angular';
 import { Pagos } from 'src/app/models/pago.model';
 import { PagoService } from 'src/app/services/pago.service';
 
@@ -21,6 +21,8 @@ export class PagosPage implements OnInit {
   public pagoForm: FormGroup;
   public pago: Pagos[] = []
   public cid: string
+  public total: number
+  presentingElement = undefined;
 
   reciboForm: FormGroup
   pdfObj = null
@@ -35,6 +37,9 @@ export class PagosPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private pit: Platform,
     private http: HttpClient,
+    private alert: AlertController,
+    private actionSheetCtrl: ActionSheetController,
+    private modalCtrl: ModalController
     //private fileOpener: FileOpener
   ) { }
 
@@ -43,12 +48,19 @@ export class PagosPage implements OnInit {
     this.cid = this.activatedRoute.snapshot.params.id
     const fecha = new Date()
 
+    
+    
+
     this.pagoForm = this.fb.group({
-      montoBs: ['', Validators.required],
-      montoSus: ['', Validators.required],
+      montoBs: [0],
+      montoSus: [0],
+      cambio: [0],
+      total: [this.total],
       fecha: [fecha, Validators.required],
       cuenta: [ this.cid, Validators.required]
     })
+
+    this.presentingElement = document.querySelector('.ion-page');
 
     this.reciboForm = this.fb.group({
       showLogo: true,
@@ -59,17 +71,42 @@ export class PagosPage implements OnInit {
   }
 
   crearPago() {
+    
 
-    console.log(this.pagoForm.value)
     this.pagoService.crearPago( this.pagoForm.value)
     .subscribe( resp =>{
-       console.log(resp)
-       //this.router.navigateByUrl(`/dashboard/cuenta/${ resp.cuenta._id}`)
+      this.router.navigateByUrl(`/cuenta/${ this.cid }`)
      })
      //const formValue = this.pagoForm.value
-     this.createPDF()
+     //this.createPDF()
      
      
+  }
+
+  canDismiss = async () => {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Are you sure?',
+      buttons: [
+        {
+          text: 'Yes',
+          role: 'confirm',
+        },
+        {
+          text: 'No',
+          role: 'cancel',
+        },
+      ],
+    });
+
+    actionSheet.present();
+
+    const { role } = await actionSheet.onWillDismiss();
+
+    return role === 'confirm';
+  };
+
+  cancel() {
+    return this.modalCtrl.dismiss(null, 'Cerrar');
   }
 
   loadLocalAssetToBase64(){

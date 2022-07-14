@@ -13,20 +13,33 @@
     <ion-item lines="full">
       <ion-label position="floating" >Monto $us</ion-label>
       <ion-input  type="number" formControlName="montoSus" id="sus" name="sus"></ion-input>
-     
     </ion-item>
-    <script>
-      function cambioSus() {
-        
-        let cambio = document.getElementById("bs").value;
-        console.log(cambio)
-        //Se actualiza en municipio inm
-        document.getElementById("sus").value = cambio;
-      }
-    </script>
+    <ion-item lines="full">
+      <ion-label position="floating" >Cambio</ion-label>
+      <ion-input  type="number" formControlName="cambio" ></ion-input>
+    </ion-item>
+   
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block" >Registrar Pago</ion-button>
+        <ion-button  type="submit" color="danger" expand="block" id="open-modal">Registrar Pago</ion-button>
+        <!-- <ion-modal #modal trigger="open-modal" [swipeToClose]="true" [canDismiss]="canDismiss">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+               
+                <ion-buttons slot="start">
+                  <ion-button (click)="cancel()">Cerrar</ion-button>
+                </ion-buttons>
+                <ion-buttons slot="end">
+                  <ion-button (click)="modal.dismiss()" type="submit">Confirmar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <p>You will be prompted when closing this modal.</p>
+            </ion-content>
+          </ng-template>
+        </ion-modal> -->
         <ion-button expand="block" (click)="createPDF()">PDF</ion-button>
       </ion-col>
     </ion-row>

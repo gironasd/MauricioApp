@@ -17,6 +17,7 @@ export class CuentaPage implements OnInit {
   public cuenta: Cuentas[] = []
   public cuentaSeleccionada!: Cuentas;
   public cid: string
+  public total = []
   public pago: Pagos[] = []
 
   constructor(
@@ -62,7 +63,13 @@ export class CuentaPage implements OnInit {
 
     this.cuentaService.obtenerPagosporCuenta( id )
         .subscribe ( (pagocuentas: any) => {
-          console.log(pagocuentas)
+          const bs = pagocuentas.map(p => p.montoBs)
+          const cambio = pagocuentas.map(p => p.cambio)
+         
+          for(var i = 0; i < bs.length; i++){
+            this.total[i] =bs[i]/cambio[i];
+          }
+          console.log('el resultado es: ', this.total)
           this.pago = pagocuentas
         })
   }
