@@ -32,7 +32,7 @@ export class CuentaService {
   }
 
   obtenerPagosporCuenta(id: string){
-    const url = `${ base_url }/pagos/${ id }`
+    const url = `${ base_url }/pagos/cuenta/${ id }`
     return this.http.get( url )
                     .pipe(
                       map( (resp: { ok: boolean, pagocuentas: Pagos}) => resp.pagocuentas)

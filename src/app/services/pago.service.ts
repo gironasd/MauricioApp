@@ -51,7 +51,7 @@ export class PagoService {
   }
 
   obtenerCobros(){
-    console.log('el id: ', this.headers)
+    console.log('headers ', this.headers)
     const url = `${ base_url }/pagos/usuarios`
     return this.http.get( url, this.headers )
                     .pipe(

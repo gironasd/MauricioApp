@@ -9,6 +9,7 @@ import { PagoService } from 'src/app/services/pago.service';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { LoginService } from 'src/app/services/login.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -48,7 +49,7 @@ export class PagosPage implements OnInit {
     this.cid = this.activatedRoute.snapshot.params.id
     const fecha = new Date()
 
-    
+
     
 
     this.pagoForm = this.fb.group({
@@ -69,6 +70,8 @@ export class PagosPage implements OnInit {
       text: 'Test'
     })
   }
+
+
 
   crearPago() {
     

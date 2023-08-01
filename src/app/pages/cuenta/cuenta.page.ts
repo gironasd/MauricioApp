@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Cuentas } from 'src/app/models/cuentas.model';
 import { Pagos } from 'src/app/models/pago.model';
 import { CuentaService } from 'src/app/services/cuenta.service';
@@ -24,7 +25,8 @@ export class CuentaPage implements OnInit {
     private fb: FormBuilder,
     private cuentaService: CuentaService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private nav: NavController
   ) { }
 
   ngOnInit() {
@@ -52,7 +54,7 @@ export class CuentaPage implements OnInit {
       .subscribe ( cuentas =>{
 
         const { nombres, apellidos, email, ciudad } = cuentas
-        console.log( ciudad )
+        console.log( '' )
         this.cuentaSeleccionada = cuentas
         this.cuentaForm.setValue({ nombres, apellidos, email, ciudad})
        
@@ -63,6 +65,7 @@ export class CuentaPage implements OnInit {
 
     this.cuentaService.obtenerPagosporCuenta( id )
         .subscribe ( (pagocuentas: any) => {
+          console.log('pagos ', pagocuentas)
           const bs = pagocuentas.map(p => p.montoBs)
           const cambio = pagocuentas.map(p => p.cambio)
          
@@ -72,5 +75,9 @@ export class CuentaPage implements OnInit {
           console.log('el resultado es: ', this.total)
           this.pago = pagocuentas
         })
+  }
+
+  goBackToCuentas() {
+    this.nav.navigateBack('/cuentas');
   }
 }

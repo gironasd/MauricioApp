@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageModule } from './pages/auth/login/login.module';
 import { TabsPageModule } from './pages/tabs/tabs.module';
+import { CuentaPage } from './pages/cuenta/cuenta.page';
 
 
 @NgModule({
